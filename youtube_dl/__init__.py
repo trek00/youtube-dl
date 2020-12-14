@@ -397,6 +397,7 @@ def _real_main(argv=None):
         'download_archive': download_archive_fn,
         'cookiefile': opts.cookiefile,
         'nocheckcertificate': opts.no_check_certificate,
+        'sslciphers': opts.ssl_ciphers,
         'prefer_insecure': opts.prefer_insecure,
         'proxy': opts.proxy,
         'socket_timeout': opts.socket_timeout,

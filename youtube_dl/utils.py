@@ -2292,11 +2292,14 @@ def formatSeconds(secs):
 
 def make_HTTPS_handler(params, **kwargs):
     opts_no_check_certificate = params.get('nocheckcertificate', False)
+    opts_ssl_ciphers = params.get('sslciphers')
     if hasattr(ssl, 'create_default_context'):  # Python >= 3.4 or 2.7.9
         context = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
         if opts_no_check_certificate:
             context.check_hostname = False
             context.verify_mode = ssl.CERT_NONE
+        if opts_ssl_ciphers:
+            context.set_ciphers(opts_ssl_ciphers)
         try:
             return YoutubeDLHTTPSHandler(params, context=context, **kwargs)
         except TypeError:
